@@ -15,7 +15,10 @@ selfcheck:
 
 check: selfcheck test lint
 
-build: check
+build:
 	poetry build
 
-.PHONY: install test lint selfcheck check build
+gendiff-cli:
+	poetry run gendiff -h
+
+.PHONY: install test test-coverage lint selfcheck check build
