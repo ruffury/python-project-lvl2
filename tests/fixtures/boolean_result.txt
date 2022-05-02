@@ -1,0 +1,6 @@
+{
+  - key1: value1
+  - key2: true
+  + key5: value5
+  + key6: false
+}
