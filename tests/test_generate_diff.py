@@ -1,61 +1,35 @@
-from gendiff import generate_diff
-from gendiff.scripts import gendiff_main
 import pytest
+from gendiff.generate_diff import generate_diff
 
 
-def test_same_json():
-    with open('tests/fixtures/same_json_result.txt') as f:
-        result_string = f.read()
+@pytest.mark.parametrize("first_file, second_file", [("./tests/fixtures/different_value1.json",
+                                                      "./tests/fixtures/different_value2.json")])
+def test_different_value(first_file, second_file):
+    with open('./tests/fixtures/different_value_result.txt') as f:
+        expected = f.read()
 
-    assert generate_diff(
-        'tests/fixtures/same_json1.json',
-        'tests/fixtures/same_json2.json'
-    ) == result_string
+    actual = generate_diff(first_file, second_file)
 
-
-def test_different_value():
-    with open('tests/fixtures/different_value_result.txt') as f:
-        result_string = f.read()
-
-    assert generate_diff(
-        'tests/fixtures/different_value1.json',
-        'tests/fixtures/different_value2.json'
-    ) == result_string
+    assert actual == expected
 
 
-def test_boolean():
-    with open('tests/fixtures/boolean_result.txt') as f:
-        result_string = f.read()
+@pytest.mark.parametrize("first_file, second_file", [("./tests/fixtures/boolean1.json",
+                                                      "./tests/fixtures/boolean2.json")])
+def test_boolean(first_file, second_file):
+    with open('./tests/fixtures/boolean_result.txt') as f:
+        expected = f.read()
 
-    assert generate_diff(
-        'tests/fixtures/boolean1.json',
-        'tests/fixtures/boolean2.json'
-    ) == result_string
+    actual = generate_diff(first_file, second_file)
 
-
-@pytest.mark.parametrize("first_file, second_file", [("tests/fixtures/same_json1.json", "tests/fixtures/same_json2.json")])
-def test_gendiff_cli(capsys, first_file, second_file):
-    with open('tests/fixtures/same_json_result_cli.txt') as f:
-        result_string = f.read()
-
-    try:
-        gendiff_main.main([first_file, second_file])
-    except SystemExit:
-        pass
-
-    output = capsys.readouterr().out
-    assert output == result_string
+    assert actual == expected
 
 
-@pytest.mark.parametrize("option", ("-h", "--help"))
-def test_help(capsys, option):
-    with open('tests/fixtures/gendiff_help.txt') as f:
-        result_string = f.read()
+@pytest.mark.parametrize("first_file, second_file", [("./tests/fixtures/same_json1.json",
+                                                      "./tests/fixtures/same_json2.json")])
+def test_same_json(first_file, second_file):
+    with open('./tests/fixtures/same_json_result.txt') as f:
+        expected = f.read()
 
-    try:
-        gendiff_main.main([option])
-    except SystemExit:
-        pass
+    actual = generate_diff(first_file, second_file)
 
-    output = capsys.readouterr().out
-    assert output == result_string
+    assert actual == expected
