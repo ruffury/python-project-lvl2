@@ -1,0 +1,5 @@
+---
+ name: "game"
+ count: 8
+ exists: true
+ duration: 100

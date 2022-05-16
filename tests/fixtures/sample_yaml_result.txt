@@ -1,0 +1,9 @@
+{
+  - count: 8
+  + count: 10
+    exists: true
+  - name: game
+  + name: program
+  - duration: 100
+  + width: 60
+}
