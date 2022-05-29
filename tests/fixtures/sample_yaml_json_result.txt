@@ -1,10 +1,10 @@
 {
-  - name: game
-  + name: jim
+  + age: 35
   - count: 8
   - duration: 100
   - exists: true
-  + age: 35
   + is_married: false
   + kids: 1
+  - name: game
+  + name: jim
 }

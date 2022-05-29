@@ -2,8 +2,8 @@
   - age: 30
   + age: 35
     is_married: false
+  + kids: 1
   - name: andy
   + name: jim
   - surname: bernard
-  + kids: 1
 }
