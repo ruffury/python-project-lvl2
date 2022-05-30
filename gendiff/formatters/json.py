@@ -12,5 +12,4 @@ def format_json(dictionary: Dict) -> str:
     Returns:
         the string of data
     """
-    result_string = json.dumps(dictionary, indent=2).replace(',', '')
-    return ''.join(result_string.split('"'))
+    return json.dumps(dictionary)

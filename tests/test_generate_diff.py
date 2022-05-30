@@ -1,16 +1,17 @@
 import pytest
+import json
 from gendiff.generate_diff import generate_diff
 
 
 @pytest.mark.parametrize("first_file, second_file", [("./tests/fixtures/sample_json1.json",
                                                       "./tests/fixtures/sample_json2.json")])
 def test_sample_json(first_file, second_file):
-    with open('./tests/fixtures/sample_json_result.txt') as f:
-        expected = f.read()
+    with open('./tests/fixtures/sample_json_result.json') as f:
+        expected = json.loads(f.read())
 
     actual = generate_diff(first_file, second_file, 'json')
 
-    assert actual == expected
+    assert actual == json.dumps(expected)
 
 
 @pytest.mark.parametrize("first_file, second_file", [("./tests/fixtures/sample_yaml1.yaml",
@@ -43,6 +44,5 @@ def test_plain(first_file, second_file):
         expected = f.read()
 
     actual = generate_diff(first_file, second_file, 'plain')
-    print(actual)
 
     assert actual == expected
