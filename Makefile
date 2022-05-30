@@ -18,7 +18,4 @@ check: selfcheck test test-coverage lint
 build:
 	poetry build
 
-gendiff:
-	poetry run gendiff
-
 .PHONY: install test test-coverage lint selfcheck check build
