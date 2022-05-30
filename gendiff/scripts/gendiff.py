@@ -15,10 +15,11 @@ def main(args=None):
         '--f',
         '--format',
         dest='FORMAT',
+        default='stylish',
         help='set format of output',
     )
     parsed_args = parser.parse_args(args)
-    diff = generate_diff(parsed_args.first_file, parsed_args.second_file)
+    diff = generate_diff(parsed_args.first_file, parsed_args.second_file, parsed_args.format)
     print(diff)
 
 
